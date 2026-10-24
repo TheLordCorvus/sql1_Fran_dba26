@@ -1,0 +1,42 @@
+-- concatenation
+SELECT
+    42, 
+    'hej DBA26'AS greet,
+    'SQL' || 'is the language of relational databases' || ' :)' AS concatenation,
+    CONCAT('Hello', 'Oracle') AS conc_func;
+
+-- string functions & subqueary
+SELECT
+      s AS original,
+      UPPER(s),
+      LOWER(s),
+      INITCAP(s),
+      LENGTH(s)
+FROM (SELECT 'Oracle sql' AS s);
+
+SELECT
+    s,
+    SUBSTR(s, 1,6) AS first_six,
+    SUBSTR(s, 7) AS from_seven
+    SUBSTR(s, -4) AS last_four
+FROM (SELECT 'Oracle SQL on Oracle26ai' AS s);
+
+-- INSTR
+SELECT 
+    INSTR('idempotent operation', 'operation') AS first_occurence,
+    INSTR('banana', 'an',1,2) AS second_occ,
+    SUBSTRING('cool@evilcorp.com', INSTR('cool@evilcorp.com', '@')+1) AS domain;
+SELECT
+    INSTR('idempotent operation', 'x') AS first_ocurrence;
+
+-- Clean a string
+
+SELECT
+      s,
+      TRIM(s),
+      LTRIM(s),
+      RTRIM(s),
+      RTRIM(INITCAP(REPLACE(TRIM(s), '      ', ' ')), 'x') AS cleaned
+FROM (SELECT '          HellU     OracleX            ' AS s);
+
+EXIT
